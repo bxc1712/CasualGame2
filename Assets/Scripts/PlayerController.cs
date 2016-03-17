@@ -4,7 +4,6 @@ using System.Collections;
 public class PlayerController : MonoBehaviour {
 
 	public float speed;
-
 	private Rigidbody rb;
 
 	void Start()
@@ -20,4 +19,12 @@ public class PlayerController : MonoBehaviour {
 
 		rb.AddForce (movement*speed);
     }
+	void OnCollisionEnter(Collision pickups)
+	{
+		if(pickups.gameObject.tag=="Pickup")
+		{
+			Destroy(pickups.gameObject.GetComponent<Rigidbody>());
+			pickups.transform.parent=transform;
+		}
+	}
 }
