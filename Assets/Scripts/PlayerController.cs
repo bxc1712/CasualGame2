@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour {
 	{
 		if(pickups.gameObject.tag=="Pickup")
 		{
+			pickups.collider.enabled=false;
 			Destroy(pickups.gameObject.GetComponent<Rigidbody>());
 			pickups.transform.parent=transform;
 		}
