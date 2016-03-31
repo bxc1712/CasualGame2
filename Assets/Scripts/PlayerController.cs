@@ -4,11 +4,16 @@ using System.Collections;
 public class PlayerController : MonoBehaviour {
 
 	public float speed;
+	public GameObject sprinkle;
+
+	private float spWeight;
+	private float slowMulti;
 	private Rigidbody rb;
 
 	void Start()
 	{
 		rb = GetComponent<Rigidbody>();
+		spWeight=0.99f;
 	}
 	void FixedUpdate()
     {
@@ -26,6 +31,13 @@ public class PlayerController : MonoBehaviour {
 			pickups.collider.enabled=false;
 			Destroy(pickups.gameObject.GetComponent<Rigidbody>());
 			pickups.transform.parent=transform;
+
+			if(sprinkle.name=="Sprinkle")
+			{
+				slowMulti=Mathf.Pow(spWeight,transform.childCount);
+				speed*=slowMulti;
+				Debug.Log(speed);
+			}
 		}
 	}
 }
