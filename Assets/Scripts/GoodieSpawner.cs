@@ -4,16 +4,16 @@ using System.Collections;
 public class GoodieSpawner : MonoBehaviour {
 
     Vector3 spawnPos;
-    GameObject sprinkle;
-    GameObject chocolate;
+    public GameObject sprinkle;
+    public GameObject chocolate;
     Quaternion spawnRot = Quaternion.identity;
-    public float sprinkleTime;
-    public float chocolateTime;
+    float sprinkleTime;
+    float chocolateTime;
     
     // Use this for initialization
 	void Start () {
-        sprinkle = GameObject.Find("/Sprinkle");
-        chocolate = GameObject.Find("Chocolate Chunk");
+        //sprinkle = GameObject.Find("Sprinkle");
+        //chocolate = GameObject.Find("Chocolate Chunk");
         spawnRot = Quaternion.Euler(90,0,0);
         chocolateTime = 1.0f;
         sprinkleTime = 2.5f;

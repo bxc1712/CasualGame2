@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviour {
 		Vector3 movement = new Vector3 (moveHorizontal, 0.0f, moveVertical);
 
 		rb.AddForce (movement*speed);
+
+        transform.localScale -= new Vector3(0.0003f, 0.0003f, 0.0003f);
     }
 	void OnCollisionEnter(Collision pickups)
 	{
@@ -34,15 +36,16 @@ public class PlayerController : MonoBehaviour {
             pickups.transform.parent = transform;
 			if(pickups.collider.tag=="Sprinkle")
 			{
-				slowMulti=Mathf.Pow(spWeight,transform.childCount);
-				speed*=slowMulti;
+				//slowMulti=Mathf.Pow(spWeight,transform.childCount);
+				//speed*=slowMulti;
 			}
 			if(pickups.collider.tag=="Chocolate")
 			{
-				slowMulti=Mathf.Pow(spWeight,transform.childCount);
-				speed*=slowMulti;
+				//slowMulti=Mathf.Pow(spWeight,transform.childCount);
+				//speed*=slowMulti;
 			}
-			Debug.Log(speed);
+            //Debug.Log(speed);
+            transform.localScale += new Vector3(0.02f, 0.02f, 0.02f); 
 		}
 	}
 }
