@@ -4,9 +4,9 @@ using System.Collections;
 public class PlayerController : MonoBehaviour {
 
 	public float speed;
-	public GameObject sprinkle;
 
 	private float spWeight;
+	private float chWeight;
 	private float slowMulti;
 	private Rigidbody rb;
 
@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour {
 	{
 		rb = GetComponent<Rigidbody>();
 		spWeight=0.99f;
+		chWeight=0.95f;
 	}
 	void FixedUpdate()
     {
@@ -26,18 +27,22 @@ public class PlayerController : MonoBehaviour {
     }
 	void OnCollisionEnter(Collision pickups)
 	{
-		if(pickups.gameObject.tag=="Pickup")
-		{
-			pickups.collider.enabled=false;
-			Destroy(pickups.gameObject.GetComponent<Rigidbody>());
-			pickups.transform.parent=transform;
-
-			if(sprinkle.name=="Sprinkle")
+        if (pickups.gameObject.tag != "Boundary")
+        {
+            pickups.collider.enabled = false;
+            Destroy(pickups.gameObject.GetComponent<Rigidbody>());
+            pickups.transform.parent = transform;
+			if(pickups.collider.tag=="Sprinkle")
 			{
 				slowMulti=Mathf.Pow(spWeight,transform.childCount);
 				speed*=slowMulti;
-				Debug.Log(speed);
 			}
+			if(pickups.collider.tag=="Chocolate")
+			{
+				slowMulti=Mathf.Pow(spWeight,transform.childCount);
+				speed*=slowMulti;
+			}
+			Debug.Log(speed);
 		}
 	}
 }
