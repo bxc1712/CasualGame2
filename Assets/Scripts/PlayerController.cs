@@ -10,11 +10,19 @@ public class PlayerController : MonoBehaviour {
 	private float slowMulti;
 	private Rigidbody rb;
 
+    int score;
+
+    bool isAlive;
+
 	void Start()
 	{
 		rb = GetComponent<Rigidbody>();
 		spWeight=0.99f;
 		chWeight=0.95f;
+
+        score = 0;
+
+        isAlive = true;
 	}
 	void FixedUpdate()
     {
@@ -25,7 +33,9 @@ public class PlayerController : MonoBehaviour {
 
 		rb.AddForce (movement*speed);
 
-        transform.localScale -= new Vector3(0.0003f, 0.0003f, 0.0003f);
+        transform.localScale -= new Vector3(0.0006f, 0.0006f, 0.0006f);
+
+        SizeCheck();
     }
 	void OnCollisionEnter(Collision pickups)
 	{
@@ -36,16 +46,37 @@ public class PlayerController : MonoBehaviour {
             pickups.transform.parent = transform;
 			if(pickups.collider.tag=="Sprinkle")
 			{
-				//slowMulti=Mathf.Pow(spWeight,transform.childCount);
-				//speed*=slowMulti;
-			}
+                score += 150;
+                transform.localScale += new Vector3(0.03f, 0.03f, 0.03f);
+                //slowMulti=Mathf.Pow(spWeight,transform.childCount);
+                //speed*=slowMulti;
+            }
 			if(pickups.collider.tag=="Chocolate")
 			{
-				//slowMulti=Mathf.Pow(spWeight,transform.childCount);
+                score += 100;
+                transform.localScale += new Vector3(0.02f, 0.02f, 0.02f);
+                //slowMulti=Mathf.Pow(spWeight,transform.childCount);
 				//speed*=slowMulti;
 			}
+            if (pickups.collider.tag == "Carrot")
+            {
+                score -= 100;
+                transform.localScale -= new Vector3(0.2f, 0.2f, 0.2f);
+                //slowMulti=Mathf.Pow(spWeight,transform.childCount);
+                //speed*=slowMulti;
+            }
+
             //Debug.Log(speed);
-            transform.localScale += new Vector3(0.02f, 0.02f, 0.02f); 
-		}
+            //transform.localScale += new Vector3(0.02f, 0.02f, 0.02f); 
+        }
 	}
+
+    void SizeCheck()
+    {
+        if (transform.localScale.x < 0.2f)
+        {
+            isAlive = false;
+            this.gameObject.SetActive(false); 
+        }
+    }
 }
