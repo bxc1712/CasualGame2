@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour {
 
 		rb.AddForce (movement*speed);
 
-        transform.localScale -= new Vector3(0.0003f, 0.0003f, 0.0003f);
+        transform.localScale -= new Vector3(0.0006f, 0.0006f, 0.0006f);
 
         SizeCheck();
     }
@@ -47,20 +47,28 @@ public class PlayerController : MonoBehaviour {
 			if(pickups.collider.tag=="Sprinkle")
 			{
                 score += 150;
-                
+                transform.localScale += new Vector3(0.03f, 0.03f, 0.03f);
                 //slowMulti=Mathf.Pow(spWeight,transform.childCount);
-				//speed*=slowMulti;
-			}
+                //speed*=slowMulti;
+            }
 			if(pickups.collider.tag=="Chocolate")
 			{
                 score += 100;
-                
+                transform.localScale += new Vector3(0.02f, 0.02f, 0.02f);
                 //slowMulti=Mathf.Pow(spWeight,transform.childCount);
 				//speed*=slowMulti;
 			}
+            if (pickups.collider.tag == "Carrot")
+            {
+                score -= 100;
+                transform.localScale -= new Vector3(0.2f, 0.2f, 0.2f);
+                //slowMulti=Mathf.Pow(spWeight,transform.childCount);
+                //speed*=slowMulti;
+            }
+
             //Debug.Log(speed);
-            transform.localScale += new Vector3(0.02f, 0.02f, 0.02f); 
-		}
+            //transform.localScale += new Vector3(0.02f, 0.02f, 0.02f); 
+        }
 	}
 
     void SizeCheck()
