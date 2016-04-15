@@ -28,7 +28,7 @@ public class GoodieSpawner : MonoBehaviour {
         SpawnSprinkle();
         SpawnChocolate();
         SpawnCarrot();
-        Debug.Log(carrotTime);
+        //Debug.Log(carrotTime);
 
     }
 
@@ -59,7 +59,7 @@ public class GoodieSpawner : MonoBehaviour {
         carrotTime -= Time.deltaTime;
         if (carrotTime < 0)
         {
-            Debug.Log("Egad, Carrots!");
+            //Debug.Log("Egad, Carrots!");
             spawnPos = new Vector3(Random.Range(-4.5f, 4.5f), 5.5f, Random.Range(-4.5f, 4.5f));
             Instantiate(carrot, spawnPos, Quaternion.identity);
             carrotTime = 7.0f;

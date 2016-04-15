@@ -1,33 +1,43 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class GUIScript : MonoBehaviour {
 
-    private GUISkin startBtn;
+    //time vars
+    public Text timerText;
+    private float time;
+    public float seconds;
+    private float minutes;
+
+    //score
+    public Text scoreText;
+    int score;
+
+    //reference to controller for score
+    private PlayerController controller;
 
     void Start()
     {
-        //assigning skin
-        startBtn = Resources.Load("ButtonSkin") as GUISkin;
+        //declaring
+        controller = GameObject.Find("Snowball").GetComponent<PlayerController>();
     }
 
-	void OnGUI () {
+    void Update()
+    {
+        //set up numbers for time
+        time += Time.deltaTime;
+        seconds = Mathf.Floor(time % 60);
+        minutes = Mathf.Floor(time / 60);
 
-        GUI.skin = startBtn;
-        //declaring rects for buttons
-        Rect menuRect = new Rect(0, 0, Screen.width / 2, Screen.height / 2);
-        Rect startRect = new Rect(0, 0, 200, 100);
+        //display timer
+        timerText.text = minutes + ": " + seconds + "s";
+        //get position for timer
+        timerText.transform.position = new Vector3(System.Convert.ToSingle(Screen.width * .2), System.Convert.ToSingle(Screen.height * .9), 0);
 
-        //centering buttons
-        menuRect.center = new Vector2(Screen.width/2, Screen.height/2);
-        startRect.center = new Vector2(Screen.width / 2, Screen.height/3);
-
-        // Make a background box
-        GUI.Box(menuRect, "Menu Box");
-		
-		// Make the start button
-		if(GUI.Button(startRect, "Level 1")) {
-			
-		}
-	}
+        //display score
+        score = controller.score;
+        scoreText.text = "Score: " + score;
+        scoreText.transform.position = new Vector3(System.Convert.ToSingle(Screen.width * .8), System.Convert.ToSingle(Screen.height * .9), 0);
+    }
 }
