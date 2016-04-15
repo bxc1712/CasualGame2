@@ -7,7 +7,7 @@ public class GUIScript : MonoBehaviour {
     //time vars
     public Text timerText;
     private float time;
-    private float seconds;
+    public float seconds;
     private float minutes;
 
     //score
@@ -31,13 +31,13 @@ public class GUIScript : MonoBehaviour {
         minutes = Mathf.Floor(time / 60);
 
         //display timer
-        timerText.text = minutes + ":" + seconds;
+        timerText.text = minutes + ": " + seconds + "s";
         //get position for timer
-        timerText.transform.position = new Vector3(System.Convert.ToSingle(Screen.width * .1), System.Convert.ToSingle(Screen.height * .9), 0);
+        timerText.transform.position = new Vector3(System.Convert.ToSingle(Screen.width * .2), System.Convert.ToSingle(Screen.height * .9), 0);
 
         //display score
         score = controller.score;
-        scoreText.text = score.ToString();
-        scoreText.transform.position = new Vector3(System.Convert.ToSingle(Screen.width * .9), System.Convert.ToSingle(Screen.height * .9), 0);
+        scoreText.text = "Score: " + score;
+        scoreText.transform.position = new Vector3(System.Convert.ToSingle(Screen.width * .8), System.Convert.ToSingle(Screen.height * .9), 0);
     }
 }

@@ -4,10 +4,14 @@ using System.Collections;
 public class PlayerController : MonoBehaviour {
 
 	public float speed;
-    //how fast the ball melts
+    //how fast the ball melts and the time interval
     public float meltSpeed;
+    private float time;
+    private float meltedTime;
+    //reference to the gui time keeping
+    private GUIScript clock;
 
-	private float spWeight;
+    private float spWeight;
 	private float chWeight;
 	private float slowMulti;
 	private Rigidbody rb;
@@ -15,10 +19,14 @@ public class PlayerController : MonoBehaviour {
     public int score;
 
     bool isAlive;
-
-	void Start()
+    
+    void Start()
 	{
-        meltSpeed = 1;
+        //melting vars
+        clock = GameObject.Find("Canvas").GetComponent<GUIScript>();
+        meltSpeed = 1f;
+        meltedTime = 0;
+
 		rb = GetComponent<Rigidbody>();
 		spWeight=0.99f;
 		chWeight=0.95f;
@@ -36,7 +44,17 @@ public class PlayerController : MonoBehaviour {
 
 		rb.AddForce (movement*speed);
 
-        ///ball melting\\\
+        //changing melt speed
+        time = clock.seconds;
+        //Debug.Log("Time:" + time);
+        if (time % 30 == 0 && time > 0 && meltedTime < time)
+        {
+            meltedTime = time + 1;
+            Debug.Log("Melt increased");
+            meltSpeed += 0.2f;
+        }
+
+        //ball melting\\
         transform.localScale -= new Vector3(0.0006f, 0.0006f, 0.0006f) * meltSpeed;
 
         SizeCheck();
