@@ -4,18 +4,21 @@ using System.Collections;
 public class PlayerController : MonoBehaviour {
 
 	public float speed;
+    //how fast the ball melts
+    public float meltSpeed;
 
 	private float spWeight;
 	private float chWeight;
 	private float slowMulti;
 	private Rigidbody rb;
 
-    int score;
+    public int score;
 
     bool isAlive;
 
 	void Start()
 	{
+        meltSpeed = 1;
 		rb = GetComponent<Rigidbody>();
 		spWeight=0.99f;
 		chWeight=0.95f;
@@ -33,7 +36,8 @@ public class PlayerController : MonoBehaviour {
 
 		rb.AddForce (movement*speed);
 
-        transform.localScale -= new Vector3(0.0006f, 0.0006f, 0.0006f);
+        ///ball melting\\\
+        transform.localScale -= new Vector3(0.0006f, 0.0006f, 0.0006f) * meltSpeed;
 
         SizeCheck();
     }
