@@ -3,7 +3,8 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 
-	public float speed;
+    //changed from public to blank
+    public float speed;
     //how fast the ball melts and the time interval
     public float meltSpeed;
     private float time;
@@ -14,7 +15,7 @@ public class PlayerController : MonoBehaviour {
     private float spWeight;
 	private float chWeight;
 	private float slowMulti;
-	private Rigidbody rb;
+	private Rigidbody rb; //changed from private to public
 
     public int score;
 
@@ -27,6 +28,7 @@ public class PlayerController : MonoBehaviour {
         meltSpeed = 1f;
         meltedTime = 0;
 
+        //commented out to try and chagne rb to public
 		rb = GetComponent<Rigidbody>();
 		spWeight=0.99f;
 		chWeight=0.95f;
@@ -34,6 +36,8 @@ public class PlayerController : MonoBehaviour {
         score = 0;
 
         isAlive = true;
+
+        speed = 5;
 	}
 	void FixedUpdate()
     {
@@ -42,7 +46,7 @@ public class PlayerController : MonoBehaviour {
 
 		Vector3 movement = new Vector3 (moveHorizontal, 0.0f, moveVertical);
 
-		rb.AddForce (movement*speed);
+		rb.AddForce (movement *speed);
 
         //changing melt speed
         time = clock.seconds;
