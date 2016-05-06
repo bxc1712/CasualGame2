@@ -15,6 +15,6 @@ public class CAMController: MonoBehaviour {
 	
 	void LateUpdate () {
 		transform.position = player.transform.position + offset;
-		Debug.Log (offset);
+		//Debug.Log (offset);
 	}
 }
