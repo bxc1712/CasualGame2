@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class MM : MonoBehaviour {
     private bool paused;
@@ -11,7 +12,7 @@ public class MM : MonoBehaviour {
     {
         paused = false;
         showGUI = false;
-        levelName = Application.loadedLevelName;
+        levelName = SceneManager.GetActiveScene().name;
     }
 
     void Update()
@@ -24,7 +25,7 @@ public class MM : MonoBehaviour {
 
     public void startGame(string changeTo)
 	{
-		Application.LoadLevel(changeTo);
+		SceneManager.LoadScene(changeTo);
 	}
 
     public void loadInstructions()
