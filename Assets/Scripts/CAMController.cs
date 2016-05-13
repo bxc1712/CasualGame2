@@ -1,22 +1,39 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class CAMController: MonoBehaviour {
 	private Vector3 offset;
+	private Vector3 desiredPos;
 	public GameObject target;
-	//public float rotateSpeed = 5;
-	private float mouseX;
-	private float mouseY;
-
+	public float radius;
+	public float rotateSpeed = 0.5f;
+	public float distance= 1;
 	void Start () {
-		offset = transform.position - target.transform.position;
+		offset=target.transform.position-transform.position;
+		radius = 5;
 	}
 	void LateUpdate () {
-		camerRotate();
+//		Vector3 desiredPosition = target.transform.position + offset;
+//		transform.position=desiredPosition;
+		//offset=target.transform.position-transform.position;
+		desiredPos = transform.position;
+		desiredPos.x-= desiredPos.x+offset.x;
+		desiredPos.z-= desiredPos.z+offset.z;
+		desiredPos=desiredPos.normalized * radius + target.transform.position;
+		Debug.Log(desiredPos.y+"desired");
+		Debug.Log(offset.y+"offset");
+		Debug.Log(offset);
+		transform.position = Vector3.MoveTowards(transform.position, desiredPos, Time.deltaTime * rotateSpeed);
+		Debug.DrawRay(transform.position,offset,Color.green);
+		transform.LookAt(target.transform.position);
+		if(Input.GetKey(KeyCode.D)){
+			orbit(false);
+		}
+		if(Input.GetKey(KeyCode.A)){
+			orbit(true);
+		}
 
-
-		Vector3 desiredPosition = target.transform.position + offset;
-		transform.position=desiredPosition;
+		//transform.RotateAround(target.transform.position,Vector3.up,Input.GetAxis("Mouse X")*rotateSpeed);
 //		transform.position = desiredPosition;
 //		float horizontal = Input.GetAxis ("Mouse X") * rotateSpeed;
 //		target.transform.Rotate (0, horizontal, 0);
@@ -27,21 +44,18 @@ public class CAMController: MonoBehaviour {
 //		transform.LookAt(target.transform);
 //		transform.position = player.transform.position + offset;
 
-		mouseX = Input.mousePosition.x;
-		mouseY = Input.mousePosition.y;
 	}
-
-	void camerRotate(){
-		var ease = 10f;
-		if (Input.GetMouseButton (0)) {
-			if (Input.mousePosition.x != mouseX) {
-				var cameraRotationY = (mouseX-Input.mousePosition.x) * ease * Time.deltaTime;
-				this.transform.Rotate (0, cameraRotationY, 0);
-			}
-			if(Input.mousePosition.y != mouseY){
-				var cameraRotationX = (Input.mousePosition.y-mouseY) * ease * Time.deltaTime;
-				this.transform.Rotate (cameraRotationX, 0, 0);
-			}
+	void orbit(bool spinLeft){
+		float step=rotateSpeed*Time.deltaTime;
+		float orbitCirc= 2f*distance*Mathf.PI;
+		float distanceRad=(rotateSpeed/orbitCirc)*2*Mathf.PI;
+		if(spinLeft){
+			transform.RotateAround(target.transform.position,Vector3.up,-distanceRad);
+		}
+		else{
+			transform.RotateAround(target.transform.position,Vector3.up,distanceRad);
 		}
 	}
+
+
 }

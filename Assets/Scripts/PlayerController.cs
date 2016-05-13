@@ -17,6 +17,13 @@ public class PlayerController : MonoBehaviour {
 	private float slowMulti;
 	private Rigidbody rb; //changed from private to public
 
+	Vector3 cameraDir;
+	//Vars for Normalized MainCam Vectors
+	Vector3 normForward;
+	Vector3 normBack;
+	Vector3 normLeft;
+	Vector3 normRight;
+
     public int score;
 
     bool isAlive;
@@ -37,17 +44,44 @@ public class PlayerController : MonoBehaviour {
 
         isAlive = true;
 
-        speed = 5;
+        speed = 10;
 	}
 	void FixedUpdate()
     {
-		float moveHorizontal=Input.GetAxis("Horizontal");
-		float moveVertical=Input.GetAxis("Vertical");
+		cameraDir = new Vector3(rb.transform.position.x,0,rb.transform.position.z) - new Vector3(Camera.main.transform.position.x,0,Camera.main.transform.position.z);
+		cameraDir.Normalize();
+		Vector3 movement = new Vector3 (cameraDir.x, 0.0f, cameraDir.y);
+		//Debug.Log (cameraDir);
+		//Debug.DrawRay(rb.position,Camera.main.transform.position,Color.red);
+		//Debug.DrawRay(rb.position,rb.,Color.green);
+//		float moveHorizontal=Input.GetAxis("Horizontal");
+//		float moveVertical=Input.GetAxis("Vertical");
 
-		Vector3 movement = new Vector3 (moveHorizontal, 0.0f, moveVertical);
+		//New Movement Code
+		normForward=Camera.main.transform.forward;
+		normBack=-Camera.main.transform.forward;
+		normLeft=-Camera.main.transform.right;
+		normRight=Camera.main.transform.right;
 
-		rb.AddForce (movement *speed);
+		normForward.Normalize();
+		normBack.Normalize();
+		normLeft.Normalize();
+		normRight.Normalize();
 
+		normBack.y=0;
+
+		if(Input.GetKey(KeyCode.W)){
+			rb.AddForce (cameraDir*speed);
+		}
+		if(Input.GetKey(KeyCode.S)){
+			rb.AddForce (normBack*speed);
+		}
+//		if(Input.GetKey(KeyCode.A)){
+//			rb.AddForce (normLeft*speed);
+//		}
+//		if(Input.GetKey(KeyCode.D)){
+//			rb.AddForce (normRight*speed);
+//		}
         //changing melt speed
         time = clock.seconds;
         //Debug.Log("Time:" + time);
