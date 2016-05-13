@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour {
 
         isAlive = true;
 
-        speed = 10;
+        speed = 15;
 	}
 	void FixedUpdate()
     {
@@ -93,7 +93,7 @@ public class PlayerController : MonoBehaviour {
         }
 
         //ball melting\\
-        transform.localScale -= new Vector3(0.0006f, 0.0006f, 0.0006f) * meltSpeed;
+        //transform.localScale -= new Vector3(0.0006f, 0.0006f, 0.0006f) * meltSpeed;
 
         SizeCheck();
     }

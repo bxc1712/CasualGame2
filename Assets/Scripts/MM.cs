@@ -13,10 +13,8 @@ public class MM : MonoBehaviour {
         paused = false;
         showGUI = false;
         //levelName = SceneManager.GetActiveScene().name;
-<<<<<<< HEAD
 		levelName = Application.loadedLevelName;
-=======
->>>>>>> 6a37c40fdd80ffdfd40dd65f9a29b7c481303221
+
     }
 
     void Update()
@@ -30,10 +28,7 @@ public class MM : MonoBehaviour {
     public void startGame(string changeTo)
 	{
 		//SceneManager.LoadScene(changeTo);
-<<<<<<< HEAD
 		Application.LoadLevel(changeTo);
-=======
->>>>>>> 6a37c40fdd80ffdfd40dd65f9a29b7c481303221
 	}
 
     public void loadInstructions()
