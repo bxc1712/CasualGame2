@@ -20,11 +20,13 @@ public class MM : MonoBehaviour {
 
     void Update()
     {
+        //checks for paused game
         if (Input.GetKeyDown("p") && levelName == "TestScene")
         {
             pauseGame();
         }
 
+        //shows paused game menu 
         if (showGUI)
         {
             pMenu.SetActive(true);
@@ -41,7 +43,7 @@ public class MM : MonoBehaviour {
 		Application.LoadLevel(changeTo);
 	}
 
-    void pauseGame()
+    public void pauseGame()
     {
         paused = !paused;
         showGUI = !showGUI;
