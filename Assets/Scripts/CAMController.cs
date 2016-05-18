@@ -20,11 +20,11 @@ public class CAMController: MonoBehaviour {
 		desiredPos.x-= desiredPos.x+offset.x;
 		desiredPos.z-= desiredPos.z+offset.z;
 		desiredPos=desiredPos.normalized * radius + target.transform.position;
-		Debug.Log(desiredPos.y+"desired");
-		Debug.Log(offset.y+"offset");
-		Debug.Log(offset);
+		//Debug.Log(desiredPos.y+"desired");
+		//Debug.Log(offset.y+"offset");
+		//Debug.Log(offset);
 		transform.position = Vector3.MoveTowards(transform.position, desiredPos, Time.deltaTime * rotateSpeed);
-		Debug.DrawRay(transform.position,offset,Color.green);
+		//Debug.DrawRay(transform.position,offset,Color.green);
 		transform.LookAt(target.transform.position);
 		if(Input.GetKey(KeyCode.D)){
 			orbit(false);

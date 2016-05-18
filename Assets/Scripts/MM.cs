@@ -8,13 +8,14 @@ public class MM : MonoBehaviour {
 
     string levelName;
 
+    public GameObject pMenu;
     void Start()
     {
         paused = false;
         showGUI = false;
         //levelName = SceneManager.GetActiveScene().name;
 		levelName = Application.loadedLevelName;
-
+        pMenu = GameObject.Find("PauseMenu");
     }
 
     void Update()
@@ -22,19 +23,23 @@ public class MM : MonoBehaviour {
         if (Input.GetKeyDown("p") && levelName == "TestScene")
         {
             pauseGame();
-        }   
+        }
+
+        if (showGUI)
+        {
+            pMenu.SetActive(true);
+        }
+        else
+        {
+            pMenu.SetActive(false);
+        }
     }
 
-    public void startGame(string changeTo)
+    public void changeLevel(string changeTo)
 	{
 		//SceneManager.LoadScene(changeTo);
 		Application.LoadLevel(changeTo);
 	}
-
-    public void loadInstructions()
-    {
-
-    }
 
     void pauseGame()
     {
