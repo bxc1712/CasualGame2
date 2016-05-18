@@ -15,7 +15,15 @@ public class MM : MonoBehaviour {
         showGUI = false;
         //levelName = SceneManager.GetActiveScene().name;
 		levelName = Application.loadedLevelName;
-        pMenu = GameObject.Find("PauseMenu");
+        try
+        {
+            pMenu = GameObject.Find("PauseMenu");
+        }
+
+        catch
+        {
+
+        }    
     }
 
     void Update()
