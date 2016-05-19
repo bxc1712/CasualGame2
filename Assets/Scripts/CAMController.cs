@@ -27,6 +27,7 @@ public class CAMController: MonoBehaviour {
 		Debug.DrawRay(transform.position,transform.forward,Color.green);
 		transform.LookAt(target.transform);
 		transform.RotateAround (target.transform.position, Vector3.up, Input.GetAxis ("Mouse X") * radius);
+		//transform.RotateAround (target.transform.position, Vector3.right, Input.GetAxis ("Mouse Y") * radius);
 //		if(Input.GetKey(KeyCode.D)){
 //			orbit(false);
 //		}

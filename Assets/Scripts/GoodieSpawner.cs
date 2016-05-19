@@ -37,10 +37,11 @@ public class GoodieSpawner : MonoBehaviour {
         sprinkleTime -= Time.deltaTime;
         if (sprinkleTime < 0)
         {
-            spawnPos = new Vector3(Random.Range(transform.position.x-4, transform.position.x+4), transform.position.y + 5, 
-                Random.Range(transform.position.x - 4, transform.position.x + 4));
+			spawnPos = new Vector3(Random.Range(0,500), 100, Random.Range(0,500));
+//            spawnPos = new Vector3(Random.Range(transform.position.x-4, transform.position.x+4), transform.position.y + 5, 
+//                Random.Range(transform.position.x - 4, transform.position.x + 4));
             Instantiate(sprinkle, spawnPos, spawnRot);
-            sprinkleTime = 2.5f;
+            sprinkleTime = .01f;
         }
     }
 
@@ -49,10 +50,11 @@ public class GoodieSpawner : MonoBehaviour {
         chocolateTime -= Time.deltaTime;
         if (chocolateTime < 0)
         {
-            spawnPos = new Vector3(Random.Range(transform.position.x - 4, transform.position.x + 4), transform.position.y + 5,
-                Random.Range(transform.position.x - 4, transform.position.x + 4));
+			spawnPos = new Vector3(Random.Range(0,500), 100, Random.Range(0,500));
+//            spawnPos = new Vector3(Random.Range(transform.position.x - 4, transform.position.x + 4), transform.position.y + 5,
+//                Random.Range(transform.position.x - 4, transform.position.x + 4));
             Instantiate(chocolate, spawnPos, Quaternion.identity);
-            chocolateTime = 1.0f;
+            chocolateTime = 0f;
         }
     }
 
@@ -62,10 +64,11 @@ public class GoodieSpawner : MonoBehaviour {
         if (carrotTime < 0)
         {
             //Debug.Log("Egad, Carrots!");
-            spawnPos = new Vector3(Random.Range(transform.position.x - 4, transform.position.x + 4), transform.position.y + 5,
-                Random.Range(transform.position.x - 4, transform.position.x + 4));
+			spawnPos = new Vector3(Random.Range(0,500), 100, Random.Range(0,500));
+//            spawnPos = new Vector3(Random.Range(transform.position.x - 4, transform.position.x + 4), transform.position.y + 5,
+//                Random.Range(transform.position.x - 4, transform.position.x + 4));
             Instantiate(carrot, spawnPos, Quaternion.identity);
-            carrotTime = 7.0f;
+            carrotTime = 0.5f;
         }
     }
 }
