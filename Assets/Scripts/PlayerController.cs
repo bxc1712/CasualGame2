@@ -76,12 +76,12 @@ public class PlayerController : MonoBehaviour {
 		if(Input.GetKey(KeyCode.S)){
 			rb.AddForce (normBack*speed);
 		}
-//		if(Input.GetKey(KeyCode.A)){
-//			rb.AddForce (normLeft*speed);
-//		}
-//		if(Input.GetKey(KeyCode.D)){
-//			rb.AddForce (normRight*speed);
-//		}
+		if(Input.GetKey(KeyCode.A)){
+			rb.AddForce (normLeft*speed);
+		}
+		if(Input.GetKey(KeyCode.D)){
+			rb.AddForce (normRight*speed);
+		}
         //changing melt speed
         time = clock.seconds;
         //Debug.Log("Time:" + time);
