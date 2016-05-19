@@ -6,7 +6,7 @@ public class CAMController: MonoBehaviour {
 	private Vector3 desiredPos;
 	public GameObject target;
 	public float radius;
-	public float rotateSpeed = 15;
+	public float rotateSpeed = 12;
 	public float distance= 1;
 	void Start () {
 		offset=target.transform.position-transform.position;
@@ -23,7 +23,7 @@ public class CAMController: MonoBehaviour {
 		//Debug.Log(desiredPos.y+"desired");
 		//Debug.Log(offset.y+"offset");
 		//Debug.Log(offset);
-		transform.position = Vector3.MoveTowards(transform.position, desiredPos+offset, Time.deltaTime * rotateSpeed);
+		transform.position = Vector3.MoveTowards(transform.position, desiredPos, Time.deltaTime * rotateSpeed);
 		Debug.DrawRay(transform.position,transform.forward,Color.green);
 		transform.LookAt(target.transform);
 		transform.RotateAround (target.transform.position, Vector3.up, Input.GetAxis ("Mouse X") * radius);
