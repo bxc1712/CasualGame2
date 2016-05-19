@@ -8,7 +8,7 @@ public class MM : MonoBehaviour {
 
     string levelName;
 
-    public GameObject pMenu;
+    private GameObject pMenu;
     void Start()
     {
         paused = false;
@@ -22,7 +22,7 @@ public class MM : MonoBehaviour {
 
         catch
         {
-
+            showGUI = false;
         }    
     }
 
