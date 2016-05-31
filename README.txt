@@ -8,6 +8,7 @@ SnowBallin' is a game where you are a snowball that is melting in attempt to col
 
 ## Daniel Martin
 * UI
+* Melting and Time scripting 
 
 ## Ben Cheng
 *Snowball Movement & Pickup Ability
